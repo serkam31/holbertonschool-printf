@@ -19,6 +19,8 @@ int _printf(const char *format, ...)
 		{"c", _print_char},
 		{"s", _print_string},
 		{"%", _print_percentage},
+		{"i", _print_integer},
+		{"d", _print_integer},
 		{NULL, NULL}};
 
 	if (format == NULL) /* Return error if format is NULL */
