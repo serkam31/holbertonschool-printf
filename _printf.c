@@ -3,7 +3,10 @@
 #include <unistd.h>
 
 /**
+ * _printf - Print text and values
+ * @format: Format string containing text and specifiers
  *
+ * Return: Number of characters printed
  */
 
 int _printf(const char *format, ...)
@@ -13,7 +16,7 @@ int _printf(const char *format, ...)
 	int i = 0;		/*index that traverses the string*/
 	int j;			/*index that traverses the structure*/
 
-	va_list args; /*declaration of variable that will allow us to access all the arguments*/
+	va_list args; /*variable that will allow us to access all the arguments*/
 
 	check_t specifier[] = {
 		{"c", _print_char},

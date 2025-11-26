@@ -4,7 +4,7 @@
 #include <stdarg.h>
 
 /**
- * struct format_specifier - Structure for format specifiers
+ * struct check - Structure for format specifiers
  * @type: The conversion specifier character
  * @func: Function pointer to handle the specifier
  *
@@ -14,7 +14,7 @@ typedef struct check
 {
 	char *type;
 	int (*func)(va_list);
-}check_t;
+} check_t;
 
 /*Prototype of the functions*/
 int _printf(const char *format, ...);
