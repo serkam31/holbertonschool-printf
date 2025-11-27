@@ -1,0 +1,78 @@
+.TH _PRINTF 3 « 2025-11-28 » Holberton project
+
+.SH NAME _printf
+Implementation of the printf function (simplified version) in C language
+
+.SH SYNOPSIS 
+.nf
+#include "main.h"
+.fi
+
+.nf
+int _printf(const char *format, ...);
+.fi
+
+.SH DESCRIPTION 
+It displays text on standard output and supports format specifiers :
+.TP
+%c
+Display a character
+
+.TP
+%s
+Display a string
+
+.TP
+%%
+Display the % symbol
+
+.TP
+%i
+Display an integer
+
+.TP
+%d
+Display an integer
+
+.SH RETURN VALUE 
+The number of characters printed
+
+.SH EXAMPLES 
+.SS Display text
+.nf
+printf("Hello world!");
+.fi
+It's displayed : Hello world!
+
+.SS Display a character
+.nf
+printf("The character is : %c", 'A');
+.fi
+It's displayed : The character is : A
+
+.SS Display a string
+.nf
+printf("The string is : %s", "Holberton School");
+.fi
+It's displayed : The string is : Holberton School
+
+.SS Display the % symbol
+.nf
+printf("The score is 100%%");
+.fi
+It's displayed : The score is 100%
+
+.SS Display an integer
+.nf
+printf("I have %i projects", 2);
+.fi
+It's displayed : I have 2 projects
+
+.SS Display an integer
+.nf
+printf("the deficit is at %d dollars", -100000);
+.fi
+It's displayed : the deficit is at -100000 dollars
+
+.SH AUTHOR
+Veronique BEAUVAIS and Mateo MARQUES
