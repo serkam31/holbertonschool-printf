@@ -1,143 +1,119 @@
-## Holbertonschool-printf
+<img height="50" align="right" src="https://raw.githubusercontent.com/fchavonet/fchavonet/refs/heads/main/assets/images/logo-holberton_school.webp" alt="Holberton School logo">
+
+## Holbertonschool-printf  
 
 Project by:  
 Véronique BEAUVAIS (GitHub: Veroniquebvs) & Matéo MARQUES (GitHub: serkam31)  
 Students at Holberton School
 
+
+
+[![Language](https://img.shields.io/badge/language-C-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+
+
+
+
 ## Description
 
-This project is a recreation of the C `printf` function. It handles various format specifiers and produces output according to a format string. 
+This project is a custom implementation of the C standard library `printf` function. It handles format specifiers (%c, %s, %d, %i, %%) and outputs formatted text to stdout. Built using a modular architecture with function pointers for easy extensibility.
 
-## Features
+<img width="1151" height="1722" alt="Diagramme sans nom drawio (2)" src="https://github.com/user-attachments/assets/5ce9b81d-1d09-4014-9851-8e11c336c575" />
 
-- Format specifier parsing
-- Variadic argument handling
-- Modular design using a dispatch table
 
-### Supported Format Specifiers
-
-| Specifier | Description | Example |
-|-----------|-------------|---------|
-| `%c` | Single character | `_printf("%c", 'A')` → `A` |
-| `%s` | String | `_printf("%s", "hello")` → `hello` |
-| `%d` | Signed decimal integer | `_printf("%d", -42)` → `-42` |
-| `%i` | Signed integer | `_printf("%i", 42)` → `42` |
-| `%%` | Literal percent sign | `_printf("%%")` → `%` |
-
-## Installation
-
-Clone the repository and compile with GCC:
-
+## Compilation
 ```bash
-git clone https://github.com/your-username/holbertonschool-printf.git
-cd holbertonschool-printf
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o printf
 ```
 
-## Usage
+## Requirements
 
-Include the header file in your program:
+- Ubuntu 20.04 LTS
+- GCC compiler
+- Git
+
+## Supported Specifiers
+
+| Specifier | Output |
+|:---------:|--------|
+| `%c` | Single character |
+| `%s` | string |
+| `%d` | decimal integer |
+| `%i` | integer |
+| `%%` | `%` character |
+
+---
+
+## Man Page
+
+To view the man page:
+```bash
+man ./man_3_printf
+```
+
+---
+
+## Examples
 
 ```c
 #include "main.h"
 
 int main(void)
 {
-    _printf("String: %s\n", "Hello, World!");
-    _printf("Character: %c\n", 'H');
-    _printf("Integer: %d\n", 42);
-    _printf("Negative: %i\n", -42);
-    _printf("Percent: %%\n");
+    /* Basic usage */
+    _printf("Hello, %s!\n", "World");           // Hello, World!
+    
+    /* Characters */
+    _printf("Letter: %c\n", 'Z');               // Letter: Z
+    
+    /* Integers */
+    _printf("Answer: %d\n", 42);                // Answer: 42
+    _printf("Negative: %i\n", -1234);           // Negative: -1234
+    
+    /* Edge cases */
+    _printf("NULL string: %s\n", NULL);         // NULL string: (null)
+    _printf("Percent sign: %%\n");              // Percent sign: %
+    
+    /* Return value = number of chars printed */
+    int len = _printf("Test\n");                // len = 5
     
     return (0);
 }
 ```
 
-**Output:**
-```
-String: Hello, World!
-Character: H
-Integer: 42
-Negative: -42
-Percent: %
-```
+## How It Works
 
-## Return Value
-
-- On success: the number of characters printed (excluding the null byte)
-- On error: `-1`
-
-## File Structure
-
-```
-holbertonschool-printf/
-├── main.h              # Header file with prototypes and struct definition
-├── _printf.c           # Main printf implementation
-├── _putchar.c          # Character output function
-├── _print_char.c       # Handler for %c
-├── _print_string.c     # Handler for %s
-├── _print_integer.c    # Handler for %d and %i
-├── _print_percentage.c # Handler for %%
-└── README.md
-```
-
-## Architecture
-
-The implementation uses a structure-based dispatch table to map format specifiers to their handler functions:
+The implementation uses a **dispatch table** pattern:
 
 ```c
 typedef struct check
 {
-    char *type;
-    int (*func)(va_list);
+    char *type;              /* Specifier character */
+    int (*func)(va_list);    /* Handler function */
 } check_t;
 ```
 
-This design allows for easy extension by simply adding new entries to the specifier array.
+**Flow:**
+1. Parse format string character by character
+2. When `%` is found, look up the next character in the dispatch table
+3. Call the matching handler function with `va_list` arguments
+4. Handler prints and returns character count
+5. Accumulate total count and return
 
-## Compilation
+This architecture makes adding new specifiers trivial — just write a handler and add it to the table.
 
-All files are compiled on Ubuntu 20.04 LTS using:
-
-```bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c
-```
-
-## Testing
-
-```c
-#include "main.h"
-#include <stdio.h>
-
-int main(void)
-{
-    int len1, len2;
-
-    len1 = _printf("Custom: [%s]\n", "test");
-    len2 = printf("Standard: [%s]\n", "test");
-    
-    _printf("Custom length: %d\n", len1);
-    printf("Standard length: %d\n", len2);
-    
-    return (0);
-}
-```
-
-## Limitations
-
-- Does not handle field width or precision
-- Does not handle length modifiers (`l`, `h`)
-- Does not handle flag characters (`+`, `-`, `#`, `0`, space)
+---
 
 ## Authors
 
-- **Mateo** - [GitHub](https://github.com/your-username)
+| | Name | GitHub |
+|:-:|------|--------|
+| 👩‍💻 | Véronique BEAUVAIS | [@Veroniquebvs](https://github.com/Veroniquebvs) |
+| 👨‍💻 | Matéo MARQUES | [@serkam31](https://github.com/serkam31) |
 
-## License
+*Students at [Holberton School](https://www.holbertonschool.com/)*
 
-This project is part of the Holberton School curriculum.
+---
 
-## Acknowledgments
-
-- Holberton School for the project guidelines
-- The creators of the original `printf` function
+<p align="center">
+  <i>Made with ❤️ as part of the Holberton School low-level programming curriculum</i>
+</p>
