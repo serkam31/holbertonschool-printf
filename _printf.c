@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
 
 /**
  * _printf - Print text and values

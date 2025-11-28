@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
+
 /**
  * _print_string - function that prints a string
  * @args: va_list containing the string to print
